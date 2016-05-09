@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Conductors
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //this is the number I'm searching for a match in
+            uint binaryTicket = 469;
+            //This is the pattern I'm trying to match (101)
+            uint binaryPerforator = 5;
+
+            //var numBinaryDigits = Math.Ceiling(Math.Log(binaryTicket, 2));
+            //Console.WriteLine(GetBinary(binaryTicket));
+            for (int i = 0; i < numForBinaryRepresentation; i++)
+            {
+                var perforatorShifted = binaryPerforator << i;
+            }
+            
+        }
+        static string GetBinary(uint numForBinaryRepresentation)
+        {
+            return Convert.ToString(numForBinaryRepresentation, 2).PadLeft(32, '0');
+        }
+
+    }
+}
