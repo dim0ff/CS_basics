@@ -8,40 +8,47 @@ namespace Most_frequent
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            int length = int.Parse(Console.ReadLine());
-            int[] nums = new int[] {
-                1,2,3,2,4,2,5,6,3,6,7,2,5,6,7,8,9,4,3,6,6,5,7,6
-            };
+            int n;
+            n = int.Parse(Console.ReadLine());
+            List<int> arr = new List<int>();
+            List<int> sorted = new List<int>();
+            int maxSubsetLenght = 0;
 
-            Array.Sort(nums);
-
-
-            int highestCount = 0;
-            int count = 1;
-            int mostFrequent = 0;
-
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < n; i++)
             {
-                for (int j = i + 1; j < nums.Length - 1; j++)
+                arr.Add(int.Parse(Console.ReadLine()));
+            }
+
+
+            for (int i = 1; i <= (int)Math.Pow(2, n) - 1; i++)
+            {
+                int tempSubsetLenght = 0;
+                List<int> temp = new List<int>();
+
+
+                for (int j = 1; j <= n; j++)
                 {
-                    if (nums[j] == nums[j + 1])
+                    if (((i >> (j - 1)) & 1) == 1)
                     {
-                        count++;
+                        temp.Add(arr[j - 1]);
+                        tempSubsetLenght++;
                     }
-                    else
-                    {
-                        count = 1;
-                    }
-                    if (count > highestCount)
-                    {
-                        mostFrequent = nums[j];
-                    }
+
+                }
+
+                if ((tempSubsetLenght > maxSubsetLenght) && (CheckAscending(temp)))
+                {
+                    sorted = temp;
+                    maxSubsetLenght = tempSubsetLenght;
                 }
             }
 
-            Console.WriteLine(mostFrequent);
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                Console.WriteLine(sorted[i]);
+            }
         }
     }
 }
