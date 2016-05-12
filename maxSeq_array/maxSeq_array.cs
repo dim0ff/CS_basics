@@ -12,19 +12,19 @@ namespace ConsoleApplication6
         {
             //input
             int length = int.Parse(Console.ReadLine());
-            int[] array = new int[length];
+            int[] arr = new int[length];
 
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = int.Parse(Console.ReadLine());
+                arr[i] = int.Parse(Console.ReadLine());
             }
 
             int maxSeq = 1;
             int currSeq = 1;
 
-            for (int i = 0; i < array.Length - 1; i++)
+            for (int i = 0; i < arr.Length - 1; i++)
             {
-                if (array[i] == array[i + 1])
+                if (arr[i] == arr[i + 1])
                 {
                     currSeq++;
                 }

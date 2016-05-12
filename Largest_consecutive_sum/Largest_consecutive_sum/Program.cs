@@ -12,35 +12,36 @@ namespace Largest_consecutive_sum
         {
             int n = int.Parse(Console.ReadLine());
             int[] arr = new int[n];
-
+            int maxCount = int.MinValue;
+            int currentCount = 1;
+            int number = 0;
             for (int index = 0; index < n; index++)
             {
                 arr[index] = int.Parse(Console.ReadLine());
             }
-            int sum = 0;
-            int maxSum = arr[0], currentSum = arr[0];
-            int start = 0, startTemp = 0, end = 0;
-            for (int i = 1; i < arr.Length; i++)
+            Array.Sort(arr);
+            for (int index = 1; index < n; index++)
             {
-                currentSum += arr[i];
-                if (currentSum < arr[i])
+                if (arr[index] == arr[index - 1])
                 {
-                    currentSum = arr[i];
-                    startTemp = i;
+                    currentCount++;
                 }
-                if (currentSum > maxSum)
+                else
                 {
-                    maxSum = currentSum;
-                    start = startTemp;
-                    end = i;
+                    currentCount = 1;
+                }
+                if (currentCount > maxCount)
+                {
+                    maxCount = currentCount;
+                    number = arr[index];
                 }
             }
-
-            for (int i = start; i <= end; i++)
+            if (n == 1)
             {
-                sum += arr[i];
+                maxCount = 1;
+                number = arr[0];
             }
-            Console.WriteLine(sum);
+            Console.WriteLine("{0} " + "(" + "{1}" + " times" + ")", number, maxCount);
 
         }  
     }
