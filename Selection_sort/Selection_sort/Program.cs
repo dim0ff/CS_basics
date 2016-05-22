@@ -4,36 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Selection_sort
+namespace Decimal_conversion
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int length = int.Parse(Console.ReadLine());
-            int[] nums = new int[length];
+            int[] arr = new int[] {
+                5, 4, 3, 2, 1 
+            };
 
-            for (int i = 0; i < length; i++)
+            int smallest = 0;
+            int indexOfSmallest = 0;
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                nums[i] = int.Parse(Console.ReadLine());
-            }
-
-            int storeBigger;
-
-            for (int i = 0; i < length; i++)
-            {
-                for (int j = 1; j < length; j++)
+                for (int j = i + 1; j < arr.Length; j++)
                 {
-                    if (nums[i] > nums[j])
+                    if (arr[i] > arr[j])
                     {
-                        storeBigger = nums[i];
-                        nums[i] = nums[j];
-                        nums[j] = storeBigger;
+                        smallest = arr[j];
+                        indexOfSmallest = j;
                     }
                 }
+
+                arr[indexOfSmallest] = arr[i];
+                arr[i] = smallest;
             }
 
-            Console.WriteLine(string.Join("\n", nums));
+            Console.WriteLine(String.Join(", ", arr));
         }
     }
 }
