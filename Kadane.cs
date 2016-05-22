@@ -4,28 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kadane_s_algo
+namespace Kadane
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[] { 
-                2, 3, -6, -1, 2, -1, 6, 4, -8, 8
+            int[] arr = new int[] {
+                1,-1,2,5,-10
             };
 
-            int currentSum = 0;
-            int maxSubarraySum = 0;
-
-            for (int i = 0; i < arr.Length; i++)
+            int currentMaxSum = 0;
+            if (arr[0] >= 0)
             {
-                //if next element is -, then set the sum back to 0
-                currentSum = Math.Max(0, currentSum + arr[i]);
-                //check if this is the maximum we have
-                maxSubarraySum = Math.Max(currentSum, maxSubarraySum);
+                currentMaxSum = arr[0];
             }
 
-            Console.WriteLine(maxSubarraySum);
+            int globalMaxSum = 0;
+
+            for (int i = 1; i < arr.Length - 1; i++)
+            {
+                if (currentMaxSum + arr[i] >= 0)
+                {
+                    currentMaxSum += arr[i];
+                    if (currentMaxSum > globalMaxSum)
+                    {
+                        globalMaxSum = currentMaxSum;
+                    }
+                }
+                else
+                {
+                    if (currentMaxSum >= 0)
+                    {
+                        currentMaxSum = arr[i];
+                    }
+                }
+
+            }
+
+            Console.WriteLine(globalMaxSum);
         }
     }
 }
